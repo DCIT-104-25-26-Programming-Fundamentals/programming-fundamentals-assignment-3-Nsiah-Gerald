@@ -44,3 +44,91 @@
 // =============================================================================
 
 
+// =============================================================================
+// PROGRAMMING FUNDAMENTALS — Assignment 3
+// =============================================================================
+//
+// TASK: Array Statistics Calculator
+// ... (comments unchanged) ...
+
+const readlineSync = require("readline-sync");
+
+/**
+ * Calculates the sum of all numbers in an array.
+ * @param {number[]} arr
+ * @returns {number}
+ */
+function calculateSum(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum;
+}
+
+/**
+ * Calculates the average of all numbers in an array.
+ * @param {number[]} arr
+ * @returns {number}
+ */
+function calculateAverage(arr) {
+  return calculateSum(arr) / arr.length;
+}
+
+/**
+ * Finds the maximum value in an array.
+ * @param {number[]} arr
+ * @returns {number}
+ */
+function findMax(arr) {
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+/**
+ * Finds the minimum value in an array.
+ * @param {number[]} arr
+ * @returns {number}
+ */
+function findMin(arr) {
+  let min = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < min) {
+      min = arr[i];
+    }
+  }
+  return min;
+}
+
+function main() {
+  const n = readlineSync.questionInt("How many numbers? ");
+
+  if (n <= 0) {
+    console.log("Error: N must be a positive integer.");
+    return;
+  }
+
+  const numbers = [];
+  for (let i = 0; i < n; i++) {
+    const num = readlineSync.questionInt(`Enter number ${i + 1}: `);
+    numbers.push(num);
+  }
+
+  const sum = calculateSum(numbers);
+  const average = calculateAverage(numbers);
+  const max = findMax(numbers);
+  const min = findMin(numbers);
+
+  console.log("\nResults:");
+  console.log(`Sum:     ${sum}`);
+  console.log(`Average: ${average}`);
+  console.log(`Maximum: ${max}`);
+  console.log(`Minimum: ${min}`);
+}
+
+main();
